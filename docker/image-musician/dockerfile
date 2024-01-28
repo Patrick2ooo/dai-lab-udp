@@ -1,0 +1,14 @@
+# Start from a base image with Java (e.g., OpenJDK)
+FROM openjdk:21
+
+# Set a working directory in the container
+WORKDIR /app
+
+# Copy your Java application's compiled classes and resources into the container
+COPY ./target/Musician-1.0.jar /app/app.jar
+
+# Set the classpath to include your application classes and the Gson JAR
+ENV CLASSPATH /app:/app/lib/*
+
+# Specify the command to run your application
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
